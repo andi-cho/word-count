@@ -1,23 +1,44 @@
+#include <fstream>
 #include <iostream>
-#include <cmath>
+#include <cstdlib>
 using namespace std;
 
-// function declarations
-int count_words_in_file(char); 
-
 int main() {
-	char file;
-	int num_words;
-
+	char next;
+	char last = 'x';
+	int num_words = 0;
+	char in_file_name[16];
+	ifstream in_stream;
+	
+	// get filename from user
 	cout << "Enter a file name: "; 
-	cin >> file;
-	num_words = count_words_in_file(file);
+	cin >> in_file_name;
+	
+	// open file, throw error if fail
+	in_stream.open(in_file_name);
+	if (in_stream.fail())
+	{
+		cout << "Input file opening failed.\n";
+		exit(1);
+	}
 
+	// while loop iterating until file complete
+	while (! in_stream.eof()) 
+	{
+		// increment ct if char is whitespace but prev char is NOT whitespace
+		if (isspace(next) && !isspace(last)) {
+			num_words += 1;		
+		}
+		last = next;
+
+		// get next word
+		in_stream.get(next);
+	}
+	
+	// output num words
 	cout << "The file contains " << num_words << " words." << endl;
+	
+	// close file 
+	in_stream.close();
 	return 0;
-}
-
-int count_words_in_file(char file) 
-{
-	return 123;
 }
