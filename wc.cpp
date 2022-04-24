@@ -34,7 +34,10 @@ int main() {
 		// get next word
 		in_stream.get(next);
 	}
-	
+	if (num_words == 0)
+	{ 
+		num_words = 1; 
+	}
 	// output num words
 	cout << "The file contains " << num_words << " words." << endl;
 	
