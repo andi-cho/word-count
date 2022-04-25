@@ -26,7 +26,7 @@ int main() {
 	while (! in_stream.eof()) 
 	{
 		// increment ct if char is whitespace but prev char is NOT whitespace
-		if (isspace(next) && !isspace(last)) {
+		if (next && isspace(next) && !isspace(last)) {
 			num_words += 1;		
 		}
 		last = next;
